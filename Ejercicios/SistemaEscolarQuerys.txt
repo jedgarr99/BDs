@@ -1,0 +1,52 @@
+--1
+select nomprof, categoría
+from prof
+where idprof not in
+(select idprof
+from grupo)
+
+select nomprof, categoría
+from prof
+  minus
+select nomprof, categoría
+from prof p , grupo g
+where p.idprof=g.idprof
+
+--2
+select nommat, avg (calif) "Promedio"
+from mater m, historial h
+where calif>=6 and extract (year from fecha) = extract(year from sysdate)-1 and m.clavem=h.clavem
+group by nommat
+
+--3
+select nommat, count(distinct calif)
+from mater m, historial h
+where m.clavem=h.clavem
+group by nommat
+having count(distinct calif)>2
+
+--4
+select nomal, nommat
+from alum a, historial h, mater m
+where nommat like 'Algo%' and
+a.cu=h.cu and h.clavem=m.clavem
+intersect 
+select nomal,nommat
+from alum a, historial h, mater m
+where nommat = 'Economia I' and
+a.cu=h.cu and h.clavem=m.clavem
+
+--6
+select carr, nommat, count(*)
+from alum a, historial h, mater m
+where extract (year from fecha)=2019
+and a .cu=h.cu and h.clavem=m.clavem
+group by carr, nommat
+order by carr
+--7 
+select nommat, count(*)
+from mater m, group g, inscrito i
+where m.clavem=g.clavem and g.claveg =i.claveg
+group by nommat, nomal 
+having count (*)<=3
+order by nommat
