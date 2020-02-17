@@ -1,0 +1,122 @@
+-- Tuplas de la tabla Carrera
+
+insert into Carrera values (50,'Ing. en Computación','Ingeniería');
+insert into Carrera values (51,'Ing. en Telecomunicaciones','Ingeniería');
+insert into Carrera values (52,'Lic. en Derecho','Sociales');
+insert into Carrera values (53,'Lic. en Economía','Sociales');
+insert into Carrera values (54,'Lic. en Administración','Administrativas');
+
+-- Tuplas de la tabla Tesis
+insert into Tesis values (250,'Sistema de ventas en corto',NULL);
+insert into Tesis values (251,'Sistema de producción e inventarios',NULL);
+insert into Tesis values (252,'Sistema de conexión remota al ITAM',NULL);
+insert into Tesis values (253,'Legislación en Informática',NULL);
+insert into Tesis values (254,'Ciclos económicos en Agricultura',NULL);
+insert into Tesis values (255,'Administración en la micro-Empresa',NULL);
+insert into Tesis values (256,'Política cambiaria',NULL);
+insert into Tesis values (257,'Sistema automatizado de caja',NULL);
+
+-- Tuplas de la tabla Concurso
+insert into Concurso values (100,'ANIEI 18',date'2018-11-28',date'2018-12-02');
+insert into Concurso values (101,'ANIEI 19',date'2019-05-30',date'2019-06-03');
+insert into Concurso values (102,'ANIEI 20',date'2020-01-10',date'2020-01-14');
+insert into Concurso values (103,'BANAMEX 19',date'2019-07-04',date'2019-07-08');
+insert into Concurso values (104,'AMIME 20',date'2020-01-31',date'2020-02-04');
+insert into Concurso values (105,'IMEF 19',date'2019-08-29',date'2019-09-02');
+insert into Concurso values (106,'AMIME 19',date'2019-09-26',date'2019-09-30');
+
+-- Tuplas de la tabla Autor
+insert into Autor values (1,'Antonio Ros',NULL,NULL);
+insert into Autor values (2,'Gustavo Mújica',NULL,NULL);
+insert into Autor values (3,'Silvia Gómez',NULL,NULL);
+insert into Autor values (4,'Sara Palacios',NULL,NULL);
+insert into Autor values (5,'Lorena Lozano',NULL,NULL);
+insert into Autor values (6,'Enrique Barranco',NULL,NULL);
+insert into Autor values (7,'Roberto Sosa',NULL,NULL);
+insert into Autor values (8,'Alicia Hernández',NULL,NULL);
+insert into Autor values (9,'Agustín Sánchez',NULL,NULL);
+
+-- Tuplas de la tabla Organización
+insert into Organización values (150,'ITAM','esc');
+insert into Organización values (151,'ITESM','esc');
+insert into Organización values (152,'UDLA','esc');
+insert into Organización values (153,'IPN','esc');
+insert into Organización values (154,'UNAM','esc');
+insert into Organización values (200,'ANIEI','emp');
+insert into Organización values (201,'AMIME','emp');
+insert into Organización values (202,'BANAMEX','emp');
+insert into Organización values (203,'IMEF','emp');
+insert into Organización values (204,'BANXICO','emp');
+
+-- Tuplas de la tabla Escuela
+insert into Escuela values (150,'dom_itam');
+insert into Escuela values (151,'dom_itesm');
+insert into Escuela values (152,'dom_udla');
+insert into Escuela values (153,'dom_ipn');
+insert into Escuela values (154,'dom_unam');
+
+-- Tuplas de la tabla Empresa
+insert into Empresa values (200,'ANIEI');
+insert into Empresa values (201,'AMIME');
+insert into Empresa values (202,'BANAMEX');
+insert into Empresa values (203,'IMEF');
+insert into Empresa values (204,'BANXICO');
+
+-- Tuplas de la tabla Ganó
+insert into Ganó values (250,100,1);
+insert into Ganó values (251,100,2);
+insert into Ganó values (251,106,1);
+insert into Ganó values (252,102,1);
+insert into Ganó values (252,106,2);
+insert into Ganó values (253,104,1);
+insert into Ganó values (253,105,2);
+insert into Ganó values (254,103,1);
+insert into Ganó values (255,105,1);
+insert into Ganó values (256,103,2);
+insert into Ganó values (256,104,3);
+insert into Ganó values (257,101,1);
+
+-- Tuplas de la tabla Organizó
+insert into Organizó values (150,102,10000);
+insert into Organizó values (151,101,15000);
+insert into Organizó values (151,106,13000);
+insert into Organizó values (153,105,20000);
+insert into Organizó values (154,104,17000);
+insert into Organizó values (154,105,18000);
+insert into Organizó values (200,100,30000);
+insert into Organizó values (200,101,35000);
+insert into Organizó values (200,102,40000);
+insert into Organizó values (200,103,45000);
+insert into Organizó values (200,104,50000);
+insert into Organizó values (200,105,33000);
+insert into Organizó values (200,106,47000);
+insert into Organizó values (201,100,38000);
+insert into Organizó values (201,101,42000);
+insert into Organizó values (201,104,30000);
+insert into Organizó values (201,106,40000);
+insert into Organizó values (202,103,30000);
+insert into Organizó values (203,105,35000);
+insert into Organizó values (204,101,46000);
+
+-- Tuplas de la tabla Imparte
+insert into Imparte values (50,150);
+insert into Imparte values (50,151);
+insert into Imparte values (51,150);
+insert into Imparte values (51,152);
+insert into Imparte values (52,152);
+insert into Imparte values (53,151);
+insert into Imparte values (53,153);
+insert into Imparte values (54,154);
+
+-- Tuplas de la tabla Estudió
+insert into Estudió values (1,50,150,250,null);
+insert into Estudió values (1,51,150,252,null);
+insert into Estudió values (2,50,150,251,null);
+insert into Estudió values (3,52,152,253,null);
+insert into Estudió values (4,50,151,251,null);
+insert into Estudió values (5,52,152,253,null);
+insert into Estudió values (5,53,153,254,null);
+insert into Estudió values (6,53,153,254,null);
+insert into Estudió values (7,54,154,255,null);
+insert into Estudió values (8,53,151,256,null);
+insert into Estudió values (9,51,152,257,null);

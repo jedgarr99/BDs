@@ -48,5 +48,36 @@ select nommat, count(*)
 from mater m, group g, inscrito i
 where m.clavem=g.clavem and g.claveg =i.claveg
 group by nommat, nomal 
-having count (*)<=3
+having count (*)<=3)
 order by nommat
+--10
+select nomal, prom
+from alum
+where Prom <= all (select Prom from Alum)
+or Prom >= all (select Prom from Alum)
+--11
+select nommat, nomal
+from mater m, grupo g , inscrito i, alum a 
+where m.clavem=g.clavem and g.claveg=i.claveg and i.cu=a.cu
+and a.cu= any(
+select cu 
+from inscrito
+group by cu
+having count(*) >= all
+	(select count(*)
+	from inscrito 
+	group by cu))
+--8 Consulta de division 
+
+---Escribir el nombre de las personas egresadas del ITAM que ganaron algún lugar en algún
+--concurso. Escribir también el nombre de la carrera que estudiaron.
+select  nomA, nomorg,  nomcar
+from organización org, autor a , estudió e, carrera c
+where nomorg ='ITAM' and org.idorg=e.idorg and a.ida =e.ida and e.idcar=c.idcar
+
+--Escribir el nombre de las organizaciones que no organizaron concurso alguno el año pasado.
+--Ordenar alfabéticamente
+
+select nomorg
+from organización  org, ORGANIZÓ o, concurso c
+where org.idorg=o.idorg and  o.idcon=c.idcon and extract( year from c.fechaini)=2019

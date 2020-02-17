@@ -1,0 +1,64 @@
+-- Tuplas de la tabla Prof.
+
+insert into Prof values (1,'Laura','tc');
+insert into Prof values (3,'Roberto','tp');
+insert into Prof values (5,'Luis','tc');
+insert into Prof values (7,'Raúl','mt');
+insert into Prof values (9,'Érika','mt');
+
+-- Tuplas de la tabla Alum.
+
+insert into Alum values (10,'Ana','com',9.0);
+insert into Alum values (20,'José','eco',8.0);
+insert into Alum values (30,'Pablo','com',8.0);
+insert into Alum values (40,'Oralia','tel',9.0);
+insert into Alum values (50,'Rebeca','tel',7.0);
+insert into Alum values (60,'Gabriel','mat',9.0);
+insert into Alum values (70,'Patricia','mat',8.66);
+
+-- Tuplas de la tabla Mater.
+
+insert into Mater values (300,'Algoritmos',9);
+insert into Mater values (310,'Estructuras de Datos',9);
+insert into Mater values (605,'Economía I',8);
+insert into Mater values (620,'Econometría',9);
+insert into Mater values (800,'Matemáticas I',7);
+insert into Mater values (816,'Estadística IV',8);
+
+-- Tuplas de la tabla Grupo.
+
+insert into Grupo values ('300-1','CC102',1,300);
+insert into Grupo values ('310-1','CC001',1,310);
+insert into Grupo values ('310-2','CC201',3,310);
+insert into Grupo values ('605-1','107',5,605);
+insert into Grupo values ('800-1','301',7,800);
+
+-- Tuplas de la tabla Inscrito.
+
+insert into Inscrito values (10,'310-1');
+insert into Inscrito values (10,'605-1');
+insert into Inscrito values (10,'800-1');
+insert into Inscrito values (20,'800-1');
+insert into Inscrito values (30,'300-1');
+insert into Inscrito values (40,'310-2');
+insert into Inscrito values (50,'605-1');
+insert into Inscrito values (50,'800-1');
+insert into Inscrito values (60,'605-1');
+insert into Inscrito values (60,'800-1');
+
+-- Tuplas de la tabla Historial.
+
+insert into Historial values (1,9,date '2019-05-30',10,300);
+insert into Historial values (2,8,date '2018-12-15',20,605);
+insert into Historial values (3,7,date '2019-05-23',20,620);
+insert into Historial values (4,8,date '2019-05-27',30,605);
+insert into Historial values (5,10,date '2019-12-10',40,300);
+insert into Historial values (6,5,date '2019-05-28',40,605);
+insert into Historial values (7,8,date '2019-12-07',40,605);
+insert into Historial values (8,9,date '2019-12-14',40,800);
+insert into Historial values (9,7,date '2018-12-08',50,310);
+insert into Historial values (10,5,date '2018-12-08',60,300);
+insert into Historial values (11,9,date '2019-05-24',60,300);
+insert into Historial values (12,7,date '2017-12-16',70,310);
+insert into Historial values (13,10,date '2018-05-28',70,800);
+insert into Historial values (14,9,date '2018-12-14',70,816);

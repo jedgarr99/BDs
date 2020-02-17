@@ -1,0 +1,66 @@
+create table Carrera
+(IdCar		int		primary key,
+ NomCar		char(35),
+ Área		char(15));
+
+create table Tesis
+(IdT		int		primary key,
+ NomT		char(45),
+ Resumen	varchar(125)	null);
+
+create table Concurso
+(IdCon		int		primary key,
+ NomCon		char(25),
+ FechaIni	date,
+ FechaFin	date);
+
+create table Autor
+(IdA		int		primary key,
+ NomA		char(25),
+ DomA		char(25),
+ TelA		char(10));
+
+create table Organización
+(IdOrg		int		primary key,
+ NomOrg		char(25),
+ Tipo		char(3));
+
+create table Escuela
+(IdOrg		int		primary key
+				references Organización,
+ DomEsc		char(25));
+
+create table Empresa
+(IdOrg		int		primary key
+				references Organización,
+ Siglas		char(15));
+
+create table Ganó
+(IdT		int		references Tesis,
+ IdCon		int		references Concurso,
+				primary key (IdT, IdCon),
+ Lugar		smallint);
+
+create table Organizó
+(IdOrg		int		references Organización,
+ IdCon		int		references Concurso,
+				primary key (IdOrg, IdCon),
+-- Para valores monetarios: tipo number, con dos decimales:
+ Monto		number(8,2));
+
+create table Imparte
+(IdCar		int		references Carrera,
+ IdOrg		int		references Escuela,
+				primary key (IdCar, IdOrg));
+
+create table Estudió
+(IdA		int		references Autor,
+ IdCar		int,
+ IdOrg		int,
+				foreign key (IdCar,IdOrg) 
+				references Imparte,
+				primary key (IdA, IdCar, IdOrg),
+ IdT		int		references Tesis,
+ FechaTit	date);
+
+
