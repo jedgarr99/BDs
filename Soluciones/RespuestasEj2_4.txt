@@ -1,0 +1,120 @@
+-- Soluciones del ejercicio TP2.4.
+
+-- Inciso a.
+create or replace function cantMatersAlum(nombre char) return integer is
+  cantMaters integer;
+begin
+  select count(*) into cantMaters
+  from Alum a, Inscrito i
+  where Nomal=nombre and a.CU=i.CU;
+  return cantMaters;
+end;
+
+-- Ejecución:
+declare NombreAl varchar(20);
+begin
+  NombreAl:= 'José';
+  dbms_output.put('Cantidad de materias de ' || NombreAl || ': ');
+  dbms_output.put_line(cantMatersAlum(NombreAl));
+end;
+
+
+-- b
+create or replace procedure nombreMayorCant(nombre1 char, nombre2 char, 
+			nombreMayor out varchar) is
+  cant1 int; cant2 int;
+begin
+  cant1:= cantMatersAlum(nombre1);
+  cant2:= cantMatersAlum(nombre2);
+  if cant1 > cant2 then
+    nombreMayor:= nombre1;
+  else
+    if cant2 > cant1 then
+      nombreMayor:= nombre2;
+    else
+      if cant1 <> 0 then
+	nombreMayor:= 'igual';
+      else
+	nombreMayor:= 'ninguna';
+      end if;
+    end if;
+  end if;
+end;
+
+
+-- Ejecución:
+declare
+  nom1 varchar(30); nom2 varchar(30); result varchar(30);
+begin
+  nom1:= 'Ana';  nom2:= 'José';
+  nombreMayorCant(nom1, nom2, result);
+
+  if result = 'igual' then
+    dbms_output.put_line(nom1||' y '||nom2||' llevan igual cantidad de materias');
+  else
+    if result = 'ninguna' then
+	dbms_output.put_line(nom1||' y '||nom2||' no llevan materia alguna');
+    else
+	dbms_output.put_line('Entre '||nom1||' y '||nom2||', lleva más materias: '||result);
+    end if;
+  end if;
+end;
+
+
+-- c
+create or replace procedure ActPromAlum(nombre char, prome out real) is
+begin
+-- Calcula el promedio, considerando sólo calificaciones aprobatorias.
+  select avg(Calif) into prome
+    from Alum a, Historial h
+    where a.NomAl= nombre and h.Calif>=6 and a.CU=h.CU;
+
+-- Asigna el resultado correspondiente en Alum.Prom.
+  update Alum set Prom=prome	-- Actualiza con null o el promedio calculado.
+	where NomAl=nombre;
+end;
+
+-- Ejecución:
+declare 
+  nom varchar(30);  p real;
+begin
+  nom:= 'Patricia';
+  ActPromAlum(nom,p);
+  if p is null then
+    dbms_output.put_line(nom || ' no ha terminado materia alguna o no es alumno');
+  else
+    dbms_output.put_line(nom || ' tiene promedio de: ' || p);
+  end if;
+end;
+
+
+-- Ejemplo 1: declaración y uso de un cursor. Muestra el nombre y el promedio de todos los alumnos.
+
+declare cursor DatosAlums is
+	select NomAl, Prom from Alum;
+  nombre varchar(30); promedio real;
+begin
+  open DatosAlums;
+  loop
+	fetch DatosAlums into nombre, promedio;
+	exit when DatosAlums%notfound;
+	dbms_output.put_line('El alumno: ' || nombre || ', tiene promedio: ' || promedio);
+  end loop;
+ close DatosAlums;
+end;
+
+-- Ejemplo 2: ídem al anterior, sólo que ahora utilizando for.
+declare cursor DatosAlums is
+	select NomAl, Prom from Alum;
+begin
+  for varAlum in DatosAlums loop
+    dbms_output.put_line('El alumno: ' || varAlum.NomAl || 
+			', tiene promedio: ' || varAlum.Prom);
+  end loop;
+end;
+
+
+
+
+
+
