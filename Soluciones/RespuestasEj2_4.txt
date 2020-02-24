@@ -114,6 +114,78 @@ begin
 end;
 
 
+-- Inciso d.
+create or replace procedure AlumMats(nomAlum char) is
+  llevaMaters boolean;
+
+-- Cursor para obtener las materias del alumno.
+  cursor matersAlum is
+    select NomMat
+    from Alum a, Inscrito i, Grupo g, Mater m
+    where a.NomAl=nomAlum and a.CU=i.CU and i.ClaveG=g.ClaveG 
+      and g.ClaveM=m.ClaveM;
+
+begin
+  dbms_output.put_line('El alumno(a): ' || nomAlum  || ', lleva las materias:');
+  llevaMaters:= false;
+
+-- Ciclo para listar las materias del alumno.
+  for tuplamat in matersAlum loop
+    dbms_output.put_line(tuplamat.NomMat);
+    llevaMaters:= true;
+  end loop;
+
+-- Imprime mensaje si no lleva materias.
+  if not llevaMaters then
+    dbms_output.put_line('Ninguna');
+  end if;
+end;
+
+-- Ejecución:
+begin
+  AlumMats('Oralia');
+end;
+
+
+-- Inciso e.
+create or replace procedure MayoresProms(n integer) is
+
+-- Definición del cursor. Los promedios deben obtenerse en orden
+-- descendente.
+  cursor nMayProms is
+    select NomAl, Prom from Alum order by Prom desc;
+
+-- La construcción: %rowtype, permite que la variable tuplaAlum
+-- tenga el mismo tipo de datos que una tupla del cursor.
+  i int; tuplaAlum nMayProms%rowtype;
+begin
+  if n<=0 then
+    dbms_output.put_line('n <= 0; dar un valor >= 1');
+  else 
+    i:= 1;
+    open nMayProms;
+    dbms_output.put_line('Alumnos con los ' || n || ' mayores promedios:');
+    loop
+      fetch nMayProms into tuplaAlum;
+      exit when i>n or nMayProms%notfound;
+	dbms_output.put_line(tuplaAlum.NomAl || ' ' || tuplaAlum.Prom);
+	i:= i+1;
+    end loop;
+    close nMayProms;
+  end if;
+end;
+
+
+-- Ejecución:
+begin
+  MayoresProms(3);
+end;
+
+
+
+
+
+
 
 
 
